@@ -1,0 +1,53 @@
+<div th:fragment="header">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	  <a class="navbar-brand" href="/home">Web Audio Portal</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  
+	  <div class="collapse navbar-collapse" id="navbarColor01">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item">
+	        <a class="nav-link" href="/upload">Upload Files</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/display_all">All Audio Files</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/display_my">My Audio Files</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/edit_profile">Edit Profile</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/all_users">All Users</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="shoutbox">Shoutbox</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/resources">Resources</a>
+	      </li>
+	    </ul>
+	    <form class="form-inline my-2 my-lg-0">
+	      <input class="form-control mr-sm-2" type="hidden"/>
+	      <ul class="navbar-nav mr-auto" sec:authorize="isAnonymous()">
+		   <li class="nav-item">
+		     <a class="nav-link" href="/login">Log in</a>
+		   </li>
+		   <li class="nav-item">
+	       	<a class="nav-link" href="/register">Register</a>
+	       </li>
+	      </ul>
+	      <ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
+		   <li class="nav-item">
+		     <a class="nav-link" href="/my_profile">Profile</a>
+		   </li>
+		   <li class="nav-item">
+	       	<a class="nav-link" href="/logout">Log out</a>
+	       </li>
+	      </ul>
+	    </form>
+	  </div>
+	</nav>
+</div>

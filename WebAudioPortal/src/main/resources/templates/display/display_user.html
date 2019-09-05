@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/main_layout}">
+	<head>
+		<title th:text="${email + '''s Audio Files'}"></title>
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div layout:fragment="content" class="container mySpace">
+			<h2><a th:href="'user_profile/' + ${email}" th:text="${email}"></a>'s Audio Files</h2>
+			<hr />
+			<div class="container text-success" style="text-align: center;">
+		        <h6 th:text="${totalAudioFilesCountString}"></h6>
+		    </div>
+		    <div class="container text-success" style="text-align: center;" th:if="${actionMsg}">
+			   <h6 th:utext="${actionMsg}"></h6>
+			</div>
+		    <br />
+		    <h4 th:text="${'Public Audio Files: ' + publicAudioFilesCount}"></h4>
+		    <hr />
+		    <br />
+			<div th:each="audio : ${publicAudioFiles}">
+				<div class="col-sm-4 col-md-4 col-xs-12" style="text-align:center; float:left;" th:if="${audio.active}">
+					<h5 th:text="${audio.name}"></h5>
+					<audio controls>
+						<source th:src="@{${audio.path}}" type="audio/mpeg">
+					</audio>
+					<h6>Author: <a th:href="'user_profile/' + ${audio.uploader}" th:text="${audio.uploader}"></a></h6>
+					<h6 th:text="${'Size: ' + audio.size + ' MB'}"></h6>
+					<h6 th:text="${'Uploaded: ' + audio.date}"></h6>
+					<div>
+						<a th:href="'download/' + ${audio.id} + '.mp3'">Download</a>
+						&nbsp; &nbsp; &nbsp;
+						<a th:href="'hideMine/' + ${audio.id} + '.mp3'">Hide</a>
+						&nbsp; &nbsp; &nbsp;
+						<a th:href="'deleteMine/' + ${audio.id} + '.mp3'">Delete</a>
+					</div>
+					<br />
+					<br />
+				</div>
+			</div>
+			<br style="clear:both;"/>
+			<br />
+			<h4 th:text="${'Private Audio Files: ' + privateAudioFilesCount}"></h4>
+			<hr />
+			<br />
+			&nbsp;&nbsp;&nbsp;
+		</div>
+		<br />
+		<br />
+		<br />
+	</body>
+</html>

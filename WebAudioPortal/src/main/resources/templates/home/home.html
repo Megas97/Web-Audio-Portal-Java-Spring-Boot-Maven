@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/main_layout}">
+	<head>
+		<title>Home</title>
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div layout:fragment="content" class="container mySpace">
+			<div sec:authorize="isAuthenticated()">
+				<h2>Hi <span th:utext="${userName}"></span>, this is the home page.</h2>
+				<a th:href="@{/logout}">Log out</a>
+			</div>
+			<div sec:authorize="isAnonymous()">
+				<h2>Hi, this is the home page.</h2>
+				<a th:href="@{/login}">Log in</a>
+			</div>
+			<hr />
+			<div style="text-align: center;">
+				<i>I created this website as a university project in my third year studying Informatics at New Bulgarian University.</i>
+			</div>
+			<div style="text-align: center;">
+				<i>The goal of this project was to replicate all functions of a basic audio sharing service.</i>
+			</div>
+			<div style="text-align: center;">
+				<i>At the top you see the navigation bar with quite a few buttons in it. If you're on mobile then you'll see a sandwich 
+				button instead.</i>
+			</div>
+			<br />
+			<div style="text-align: center;">
+				<i>While to use the full functionality of the website you need to be registered and logged in, guest users still have the 
+				ability to view and download all public audio files, view the list with all registered users and their audio files and 
+				details as well as to view and use the shoutbox feature.</i>
+			</div>
+			<br />
+			<div style="text-align: center;">
+				<i>All registered and logged in users are allowed to upload mp3 audio files of up to 100 MB in size. Multiple file upload
+            	is also available but the size limit for all selected files to upload is again 100 MB. Only the uploader of a given mp3 
+            	audio file can delete, hide or unhide it at any given moment in time.</i>
+			</div>
+			<br />
+			<div style="text-align: center;">
+				<i>In case any of you are wondering how I built this site and what I used, I've put up a special tab in the navigation 
+				bar, which contains links to different topics that really helped me during the development of the website. Just remember -
+				 never give up! That's the golden rule of programming.</i>
+			</div>
+			<br />
+			<div style="text-align: center;">
+				<i>Of course, not all features can be covered in this page so I'll just let you explore the website on your own. 
+				It's more fun that way too :)</i>
+			</div>
+			<br />
+			<br />
+		</div>
+	</body>
+</html>

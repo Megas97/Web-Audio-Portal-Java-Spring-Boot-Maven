@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/main_layout}">
+	<head>
+		<title>Edit Profile</title>
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div layout:fragment="content" class="container mySpace">
+			<h2><a th:href="my_profile">Edit Profile</a></h2>
+			<hr />
+			<div class="container text-success" style="text-align: center;" th:if="${actionMsg}">
+			   <h6 th:utext="${actionMsg}"></h6>
+			</div>
+		    <br />
+			<form th:action="@{/edit_profile}" th:object="${formUser}" method="post">
+		        <div class="form-horizontal">
+		        	<div class="form-group">
+		        		<label class="control-label col-md-2">First name:</label>
+		        		<div class="col-md-10">
+		        			<input type="text" th:field="*{firstname}" />
+		        		</div>
+		        	</div>
+		        	<div class="form-group">
+		        		<label class="control-label col-md-2">Last name:</label>
+		        		<div class="col-md-10">
+		        			<input type="text" th:field="*{lastname}" />
+		        		</div>
+		        	</div>
+		        	<div class="form-group">
+		        		<label class="control-label col-md-2">Email:</label>
+		        		<div class="col-md-10">
+		        			<input type="text" th:field="*{email}" />
+		        		</div>
+		        	</div>
+		        	<div class="form-group">
+		        		<label class="control-label col-md-2">Password:</label>
+		        		<div class="col-md-10">
+		        			<input type="password" th:field="*{password}" />
+		        		</div>
+		        	</div>
+		        	<div class="form-group">
+		        		<div class="col-md-10">
+		        			&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="Reset" />
+		        		</div>
+		        	</div>
+		        	<br />
+		        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a th:href="toggle_account">Toggle Account</a>
+		        	<br />
+		        	<br />
+		        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a th:href="delete_all">Delete All Audio Files</a>
+		        	<br />
+		        	<br />
+		        	<br />
+		        </div>
+		    </form>
+	    </div>
+	</body>
+</html>

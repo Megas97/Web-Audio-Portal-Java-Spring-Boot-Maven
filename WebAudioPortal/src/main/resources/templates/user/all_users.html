@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/main_layout}">
+	<head>
+		<title>All Users</title>
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div layout:fragment="content" class="container mySpace">
+			<h2>All Users</h2>
+			<table class="table">
+				 <tr>
+				 	<th>ID</th>
+				 	<th>First name</th>
+				 	<th>Last name</th>
+				 	<th>Email</th>
+				 	<th>Active</th>
+				 	<td><b>Audio Files</b></td>
+				 </tr>
+				 <tr th:each="user : ${users}">
+				 	<td th:text="${user.id}"></td>
+				 	<td th:text="${user.firstname}"></td>
+				 	<td th:text="${user.lastname}"></td>
+				 	<td><a th:href="${'mailto:' + user.email}" target="_top" th:text="${user.email}"></a></td>
+				 	<td th:if="${user.active}">Yes</td>
+				 	<td th:unless="${user.active}">No</td>
+				 	<td sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getUsername() != user.email}"><a th:href="'display_user/' + ${user.email}">Audio Files</a></td>
+				 	<td sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getUsername() == user.email}"><a th:href="display_my">Audio Files</a></td>
+				 	<td sec:authorize="isAnonymous()"><a th:href="'display_user/' + ${user.email}">Audio Files</a></td>
+				 </tr>
+			</table>
+			&nbsp;&nbsp;&nbsp;
+		</div>
+	</body>
+</html>

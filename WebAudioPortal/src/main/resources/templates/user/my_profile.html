@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/main_layout}">
+	<head>
+		<title>My Profile</title>
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div layout:fragment="content" class="container mySpace">
+			<h2><a th:href="display_my">My Profile</a></h2>
+			<hr />
+			<dl class="dl-horizontal" style="word-wrap: break-word;">
+				<dt>ID: </dt>
+				<dd th:text="${user.id}"></dd>
+				<dt>First name: </dt>
+				<dd th:text="${user.firstname}"></dd>
+				<dt>Last name: </dt>
+				<dd th:text="${user.lastname}"></dd>
+				<dt>Email: </dt>
+				<dd><a th:href="${'mailto:' + user.email}" target="_top" th:text="${user.email}"></a></dd>
+				<dt>Password hash: </dt>
+				<dd th:text="${user.password}"></dd>
+				<dt>Active: </dt>
+				<dd th:if="${user.active}">Yes</dd>
+				<dd th:unless="${user.active}">No</dd>
+			</dl>
+		</div>
+	</body>
+</html>
